@@ -47,5 +47,23 @@ namespace EventProject.Controllers
                 }
             }
         }
+
+        // POST: Have user enter an event.
+        [Route("api/events/{eventID}")]
+        [HttpPost]
+        public IHttpActionResult SignUpForEvent(int eventID, [FromBody]EnterEvent EventInfo)
+        {
+            using (var db = new EventContext())
+            {
+                var AllUsers = db.Attendees.Include(i => i.Event);
+                var user = AllUsers.Single(s => s.Email == EventInfo.Email);
+                var CurrentEvent = db.Events.Single(w => w.ID == eventID);
+
+                user.Event.Add(CurrentEvent);
+
+                db.SaveChanges();
+                return Ok(EventInfo);
+            }
+        }
     }
 }
