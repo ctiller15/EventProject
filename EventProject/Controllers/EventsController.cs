@@ -21,8 +21,17 @@ namespace EventProject.Controllers
         {
             using (var db = new EventContext())
             {
-                var query = db.Events.Include(i => i.City).OrderBy(o => o.Title).ToList();
-                return query;
+                var query = db.Events.Include(i => i.City);
+
+                if (Event != null)
+                {
+                    if (!String.IsNullOrEmpty(Event.Title))
+                    {
+                        query = query.Where(w => w.Title.Contains(Event.Title));
+                    }
+                }
+
+                return query.OrderBy(o => o.Title).ToList();
             }
         }
     }
