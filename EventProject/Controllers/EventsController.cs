@@ -9,6 +9,7 @@ using System.Web.Http;
 using EventProject.Data;
 using EventProject.Models;
 using EventProject.ViewModels.Events;
+using EventProject.Services;
 
 namespace EventProject.Controllers
 {
@@ -23,15 +24,27 @@ namespace EventProject.Controllers
             {
                 var query = db.Events.Include(i => i.City);
 
-                if (Event != null)
-                {
-                    if (!String.IsNullOrEmpty(Event.Title))
-                    {
-                        query = query.Where(w => w.Title.Contains(Event.Title));
-                    }
-                }
+                query = Queries.EventQueryParse(query, Event);
 
                 return query.OrderBy(o => o.Title).ToList();
+            }
+        }
+
+        // GET: One event.
+        [Route("api/events/{eventID}")]
+        [HttpGet]
+        public IHttpActionResult GetOneEvent(int eventID)
+        {
+            using (var db = new EventContext())
+            {
+                var SingleEvent = db.Events.SingleOrDefault(s => s.ID == eventID);
+                if (SingleEvent == null)
+                {
+                    return NotFound();
+                } else
+                {
+                    return Ok(SingleEvent);
+                }
             }
         }
     }
