@@ -18,5 +18,7 @@ namespace EventProject.Models
         public int? Age_Limit { get; set; }
         public decimal? Price { get; set; }
         public DateTime DateHappening { get; set; }
+
+        public ICollection<Attendee> Attendee { get; set; } = new HashSet<Attendee>();
     }
 }
