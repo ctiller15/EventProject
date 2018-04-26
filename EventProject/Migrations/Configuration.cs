@@ -41,9 +41,9 @@ namespace EventProject.Migrations
                     Tagline = "Polish your code skills!",
                     Long_Description = "An event where friends who like coding do some coding stuff.",
                     Address = "12345 You noPark blvd",
-                    City = "PROBurg",
+                    CityID = 1,
                     State = "FL",
-                    Zip = 33909,
+                    Zip = "33909",
                     Age_Limit = 70,
                     Price = 0.00m,
                     DateHappening = new DateTime(2018, 06, 20)
@@ -54,9 +54,9 @@ namespace EventProject.Migrations
                     Tagline = "Come out, run and get fit.",
                     Long_Description = "A fun running event.",
                     Address = "512 No parkinghere st",
-                    City = "PROBurg",
+                    CityID = 1,
                     State = "FL",
-                    Zip = 33555,
+                    Zip = "33555",
                     Age_Limit = 70,
                     Price = 50.00m,
                     DateHappening = new DateTime(2018, 07, 14)
@@ -67,9 +67,9 @@ namespace EventProject.Migrations
                     Tagline = "Come have some good food and some fun movies!",
                     Long_Description = "A biweekly event where we all get together at a restaurant and watch a movie. Duh!",
                     Address = "900 we wantyourmoney circle",
-                    City = "PROBurg",
+                    CityID = 1,
                     State = "FL",
-                    Zip = 32105,
+                    Zip = "32105",
                     Age_Limit = 40,
                     Price = 10.00m,
                     DateHappening = new DateTime(2018, 05, 10)
@@ -80,9 +80,9 @@ namespace EventProject.Migrations
                     Tagline = "Get to know your community members and improve your language skills",
                     Long_Description = "An event where friends who like coding do some coding stuff.",
                     Address = "12000 SomeonesHome circle",
-                    City = "PROBurg",
+                    CityID = 1,
                     State = "FL",
-                    Zip = 33909,
+                    Zip = "33909",
                     Age_Limit = 70,
                     Price = 0.00m,
                     DateHappening = new DateTime(2018, 08, 29)
@@ -93,9 +93,9 @@ namespace EventProject.Migrations
                     Tagline = "A fun day in the park",
                     Long_Description = "An event where friends who like coding do some coding stuff.",
                     Address = "500 DontTrustOurDogs lane",
-                    City = "PROBurg",
+                    CityID = 1,
                     State = "FL",
-                    Zip = 32780,
+                    Zip = "32780",
                     Age_Limit = 90,
                     Price = 0.00m,
                     DateHappening = new DateTime(2019, 01, 01)
@@ -133,6 +133,8 @@ namespace EventProject.Migrations
             {
                 db.Attendees.AddOrUpdate(a => a.Email, attendee);
             });
+
+            db.SaveChanges();
 
         }
     }
