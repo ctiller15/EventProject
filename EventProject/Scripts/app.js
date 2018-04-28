@@ -13,11 +13,12 @@ app.config(function ($routeProvider) {
 app.controller("allEventsController", ["$scope", "$http", function ($scope, $http) {
     $scope.message = "Hello!!!";
     console.log("Hello!");
-    //$http({
-    //    method: "GET",
-    //    url: "/api/events"
-    //}).then(res => {
-    //    $scope.events = resp.data
-    //    console.log($scope.events)
-    //})
+
+    $http({
+        method: "GET",
+        url: "/api/events"
+    }).then(res => {
+        $scope.events = res.data;
+        console.log($scope.events);
+    })
 }])
