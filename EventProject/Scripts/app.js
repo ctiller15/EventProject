@@ -8,6 +8,8 @@ app.config(function ($routeProvider) {
         templateUrl: "/Scripts/app/views/events.html",
         controller: "allEventsController"
     })
+
+    $routeProvider.otherwise({ redirectTo: "/events" });
 })
 
 app.controller("allEventsController", ["$scope", "$http", function ($scope, $http) {
