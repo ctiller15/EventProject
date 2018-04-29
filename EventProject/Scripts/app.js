@@ -21,14 +21,59 @@ app.config(function ($routeProvider) {
 app.controller("allEventsController", ["$scope", "$http", function ($scope, $http) {
     $scope.searchParams = {
         Title: "",
+        TagLine: "",
+        Long_Description: "",
+        Address: "",
+        City: "",
+        State: "",
+        Zip: "",
+        Age_Limit: "",
+        Price: "",
+        DateHappening: "",
+    }
+
+    // Checks the object properties to see if they exist.
+    const checkValues = (obj) => {
+        console.log(obj);
+        for (let key in obj) {
+            console.log(key, obj[key]);
+            if (obj[key]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Iterates over the properties and appends them to the url string.
+    const checkProps = (obj) => {
+        let urlAppend = "";
+        for (let key in obj) {
+            if (obj[key]) {
+                if (urlAppend) {
+                    urlAppend += `&${key}=${obj[key]}`;
+                } else {
+                    urlAppend += `${key}=${obj[key]}`;
+                }
+            }
+        }
+        return urlAppend;
     }
 
     $scope.searchForEvents = () => {
         console.log($scope.searchParams);
         let url = "/api/events";
-        if ($scope.searchParams.Title) {
-            url += `?Title=${$scope.searchParams.Title}`;
+
+        if (checkValues($scope.searchParams)) {
+            console.log("A property exists!");
+            url += "?"
         }
+
+        url += checkProps($scope.searchParams);
+
+        console.log(url);
+        //if ($scope.searchParams.Title) {
+        //    url += `Title=${$scope.searchParams.Title}`;
+        //}
 
         $http({
             method: "GET",
