@@ -15,7 +15,8 @@ namespace EventProject.ViewModels.Events
         public string State { get; set; }
         public string Zip { get; set; }
         public int? Age_Limit { get; set; }
-        public decimal Price { get; set; }
-        public DateTime DateHappening { get; set; }
+        // Nullable on the viewmodel, not nullable on the actual model.
+        public decimal? Price { get; set; }
+        public DateTime? DateHappening { get; set; }
     }
 }
