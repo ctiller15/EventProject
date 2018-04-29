@@ -37,12 +37,13 @@ namespace EventProject.Controllers
         {
             using (var db = new EventContext())
             {
-                var SingleEvent = db.Events.SingleOrDefault(s => s.ID == eventID);
+                var SingleEvent = db.Events.Include(i => i.Attendee).Include(i => i.City).SingleOrDefault(s => s.ID == eventID);
                 if (SingleEvent == null)
                 {
                     return NotFound();
                 } else
                 {
+
                     return Ok(SingleEvent);
                 }
             }
