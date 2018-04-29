@@ -1,5 +1,10 @@
 ﻿<section>
     <h1>This is the events route!</h1>
+    <!-- A form used to search for events. Will default to all events. -->
+    <form>
+        <input type="text" ng-model="searchParams.Title" placeholder="Event Title"/>
+        <button type="button" ng-click="searchForEvents()">Search!</button>
+    </form>
     <section ng-repeat="event in events track by $index" ng-include="'/Scripts/app/views/oneEvent.html'">
     </section>
 </section>
