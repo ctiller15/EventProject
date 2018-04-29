@@ -1,2 +1,24 @@
 ﻿<h1>Welcome to the event detail page!</h1>
 <h2>{{event.Title}}</h2>
+<h3>{{event.Tagline}}</h3>
+<h3>{{event.Long_Description}}</h3>
+<h4>{{event.Address}} , {{event.City.Name}} , {{event.State}} , {{event.Zip}}</h4>
+<ul>
+    <li>Age limit: {{event.Age_Limit}}</li>
+    <li>Price: {{event.Price}}</li>
+    <li>Date: {{event.DateHappening}}</li>
+
+</ul>
+
+<h5>Sign up for event</h5>
+<form name="joinEventForm" nonvalidate ng-submit="joinEventForm.$valid && signUpEvent()">
+    <input type="email" placeholder="email" ng-model="userEmail" required/>
+    <button>Sign up!</button>
+</form>
+
+<p>Event attendees:</p>
+<ul>
+    <li ng-repeat="attendee in event.Attendee track by $index">
+        {{attendee.Email}}
+    </li>
+</ul>

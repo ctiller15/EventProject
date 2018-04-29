@@ -42,6 +42,38 @@ app.controller("allEventsController", ["$scope", "$http", function ($scope, $htt
     $scope.searchForEvents();
 }]);
 
-app.controller("eventsDetailController", ["$scope", "$http", function ($scope, $http) {
+app.controller("eventDetailController", ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
     console.log("On the events detail controller!");
+    $scope.event = "";
+    $scope.userEmail = "";
+    let tempEmail = "";
+
+    $scope.signUpEvent = () => {
+        tempEmail = $scope.userEmail;
+        $scope.userEmail = "";
+        $http({
+            method: "POST",
+            url: `/api/events/${$routeParams.eventID}`,
+            data: {
+                Email: tempEmail,
+            }
+        }).then(res => {
+            console.log(res.data);
+            getData();
+        });
+    }
+
+    const getData = () => {
+        $http({
+            method: "GET",
+            url: `/api/events/${$routeParams.eventID}`,
+        }).then(res => {
+            $scope.event = res.data;
+            console.log($scope.event);
+        });
+    }
+
+    getData();
+
+
 }]);

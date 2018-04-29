@@ -57,8 +57,20 @@ namespace EventProject.Controllers
             using (var db = new EventContext())
             {
                 var AllUsers = db.Attendees.Include(i => i.Event);
-                var user = AllUsers.Single(s => s.Email == EventInfo.Email);
+                // If the user exists, great!
+                // If not, create them.
+                var user = AllUsers.SingleOrDefault(s => s.Email == EventInfo.Email);
                 var CurrentEvent = db.Events.Single(w => w.ID == eventID);
+
+                if(user == null)
+                {
+                    user = new Attendee
+                    {
+                        Email = EventInfo.Email
+                    };
+                    db.Attendees.Add(user);
+                    db.SaveChanges();
+                }
 
                 user.Event.Add(CurrentEvent);
 
