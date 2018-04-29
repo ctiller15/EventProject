@@ -1,5 +1,9 @@
 ﻿<section>
-    <h1>{{event.Title}}</h1>
+    <h1>
+        <a href="#!/events/{{event.ID}}">
+            {{event.Title}}
+        </a>
+    </h1>
     <h2>{{event.Tagline}}</h2>
     <h2>{{event.DateHappening}}</h2>
     <h2>{{event.Address}},{{event.City.Name}},{{event.State}},{{event.Zip}}</h2>
