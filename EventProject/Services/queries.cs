@@ -60,7 +60,7 @@ namespace EventProject.Services
                 // Age Limit
                 if (ParseData.Age_Limit != null)
                 {
-                    Query = Query.Where(w => (w.Age_Limit - 1 < ParseData.Age_Limit) && (ParseData.Age_Limit < w.Age_Limit + 1));
+                    Query = Query.Where(w => (w.Age_Limit <= ParseData.Age_Limit) || (w.Age_Limit == null));
                 }
 
                 //Price

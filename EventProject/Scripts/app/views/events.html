@@ -3,6 +3,15 @@
     <!-- A form used to search for events. Will default to all events. -->
     <form>
         <input type="text" ng-model="searchParams.Title" placeholder="Event Title"/>
+        <input type="text" ng-model="searchParams.TagLine" placeholder="Tagline" />
+        <input type="text" ng-model="searchParams.Long_Description" placeholder="Description" />
+        <input type="text" ng-model="searchParams.Address" placeholder="Address" />
+        <input type="text" ng-model="searchParams.City" placeholder="City" />
+        <input type="text" ng-model="searchParams.State" placeholder="State" />
+        <input type="text" ng-model="searchParams.Zip" placeholder="Zip" />
+        <input type="number" ng-model="searchParams.Age_Limit" placeholder="Age Limit" />
+        <input type="datetime" ng-model="searchParams.DateHappening" placeholder="Date Happening" />
+        <input type="number" ng-model="searchParams.Price" placeholder="Cost" />
         <button type="button" ng-click="searchForEvents()">Search!</button>
     </form>
     <section ng-repeat="event in events track by $index" ng-include="'/Scripts/app/views/oneEvent.html'">
