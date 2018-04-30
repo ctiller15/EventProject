@@ -64,21 +64,22 @@ namespace EventProject.Services
                 }
 
                 //Price
-                if (ParseData.Price != null)
+                if (ParseData.Price != null || ParseData.Price != 0)
                 {
-                    Query = Query.Where(w => w.Tagline.Contains(ParseData.TagLine));
+                    Query = Query.Where(w => w.Price <= ParseData.Price || w.Price == null);
                 }
 
                 // DateHappening
+                // Having trouble figuring out issue.
                 if (ParseData.DateHappening.HasValue)
                 {
-                    Query = Query.Where(w => w.DateHappening.Year == ParseData.DateHappening.Value.Year
-                                        || w.DateHappening.Month == ParseData.DateHappening.Value.Month
-                                        || w.DateHappening.Day == ParseData.DateHappening.Value.Day);
+                    Query = Query.Where(w => w.DateHappening != null);
                 }
             }
 
             return Query;
         }
     }
+
+
 }

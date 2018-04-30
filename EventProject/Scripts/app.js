@@ -50,9 +50,22 @@ app.controller("allEventsController", ["$scope", "$http", function ($scope, $htt
         for (let key in obj) {
             if (obj[key]) {
                 if (urlAppend) {
-                    urlAppend += `&${key}=${obj[key]}`;
+                    // Date checking...
+                    if (obj[key] instanceof Date) {
+                        urlAppend += `&${key}=${obj[key].getFullYear()}-${obj[key].getMonth() + 1}-${obj[key].getDate()}`;
+
+                    } else {
+                        urlAppend += `&${key}=${obj[key]}`;
+                    }
+
                 } else {
-                    urlAppend += `${key}=${obj[key]}`;
+                    if (obj[key] instanceof Date) {
+                        urlAppend += `${key}=${obj[key].getFullYear()}-${obj[key].getMonth() + 1}-${obj[key].getDate()}`;
+
+                    } else {
+                        urlAppend += `${key}=${obj[key]}`;
+                    }
+
                 }
             }
         }

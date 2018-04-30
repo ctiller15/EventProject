@@ -10,8 +10,8 @@
         <input type="text" ng-model="searchParams.State" placeholder="State" />
         <input type="text" ng-model="searchParams.Zip" placeholder="Zip" />
         <input type="number" ng-model="searchParams.Age_Limit" placeholder="Age Limit" />
-        <input type="datetime" ng-model="searchParams.DateHappening" placeholder="Date Happening" />
-        <input type="number" ng-model="searchParams.Price" placeholder="Cost" />
+        <input type="date" ng-model="searchParams.DateHappening" placeholder="Date Happening" />
+        <input type="number" ng-model="searchParams.Price" placeholder="Cost" step="any" min="0" />
         <button type="button" ng-click="searchForEvents()">Search!</button>
     </form>
     <section ng-repeat="event in events track by $index" ng-include="'/Scripts/app/views/oneEvent.html'">
